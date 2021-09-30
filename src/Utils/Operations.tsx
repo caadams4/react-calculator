@@ -1,4 +1,7 @@
-function handleOperation(data: {workingTotal: string, calculatingTotal: string, operation: string})  {
+
+import { calcData } from '../interfaces/calcData'
+
+function handleOperation(data: calcData ):calcData  {
 
     // takes in calculator data and performs mathematical operation based on operation<string> variable.
 
@@ -36,7 +39,7 @@ function handleOperation(data: {workingTotal: string, calculatingTotal: string, 
     return data;
 }
 
-function handleDecimal(input: string,data: {workingTotal: string, calculatingTotal: string, operation: string}) {
+function handleDecimal(input: string,data: calcData ): calcData {
 
     // takes in calculator data and adds decimal value
 
@@ -50,32 +53,39 @@ function handleDecimal(input: string,data: {workingTotal: string, calculatingTot
 
         workingTotal = workingTotal + inputNum * 0.1; // adding input as a tenth
         data.workingTotal = "" + workingTotal;
-        return data;
+
     }
+    return data;
 }
 
-function handleNegative(data: {workingTotal: string, calculatingTotal: string, operation: string}) {
+function handleNegative(data: calcData ): calcData {
 
     // takes in calculator data and mulitplies the workingTotal by -1
 
         // returns data as workingTotal * -1 -- turning neg -> pos or pos -> neg 
+    if (data.workingTotal === "" && data.operation !== "" && data.calculatingTotal !== "") {
+        if (data.operation === "+") data.operation = "-";
+        else if (data.operation === "-") data.operation = "+";
+    } else {
+        let workingTotal: number =+data.workingTotal; // converting to num
+        workingTotal *= -1; // negating workingTotal
+        data.workingTotal = "" + workingTotal;
+    
 
-    let workingTotal: number =+data.workingTotal; // converting to num
-    workingTotal *= -1; // negating workingTotal
-    data.workingTotal = "" + workingTotal;
-    data.operation = "";
+    }
+
+
     return data;
 
 }
 
-function operationHandler(input: string,data: {workingTotal: string, calculatingTotal: string, operation: string}) {
+function operationHandler(input: string, data: calcData): calcData {
 
     // takes in calculator data and adds or switches operation sign 
 
         // returns data as with desired operation sign value 
 
     if (data.operation !== "") {    // if operation previously inputted..
-        
         data.workingTotal = data.calculatingTotal;  //variables reset ot handle math operations 
         data.workingTotal = "";  
         data.operation = input  // switching existing operation to last inputted operation
@@ -89,7 +99,7 @@ function operationHandler(input: string,data: {workingTotal: string, calculating
 
 }
 
-export function offShoreDecisionMaker(input: string,data: {workingTotal: string, calculatingTotal: string, operation: string}) {
+export function offShoreDecisionMaker(input: string, data: calcData ): calcData {
 
     // takes in input from buttons and caluclator data FROM APP.TSX. Based on input & existing calcdata, decisions are made to manipulate calcdata
     
@@ -111,7 +121,6 @@ export function offShoreDecisionMaker(input: string,data: {workingTotal: string,
             return data;
         }
         case ("(-)"): { // negates workingTotal variable
-            data.operation = input;
             return handleNegative(data);
         }
         case ("="): {   // calls function to solve equation

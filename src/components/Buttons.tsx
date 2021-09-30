@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import { Button } from './Button';
-import { EqualsButton } from './EqualsButton';
 
 
 export const Buttons = (props: {newInput: (incomingInput: string) => void}): JSX.Element => {
@@ -10,8 +8,9 @@ export const Buttons = (props: {newInput: (incomingInput: string) => void}): JSX
     <div>
             <div>
                 <Button val = "AC" inputFromBtn = {props.newInput}/>  
-                <Button val = "C" inputFromBtn = {props.newInput}/>  
-                <EqualsButton val = "=" inputFromBtn = {props.newInput}/>  
+                <Button val = "C" inputFromBtn = {props.newInput}/> 
+                <Button val = "<-" inputFromBtn = {props.newInput}/>
+                <Button val = "=" inputFromBtn = {props.newInput}/>  
   
             </div>
             <div>

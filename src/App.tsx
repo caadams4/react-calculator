@@ -3,6 +3,13 @@ import './App.css'
 import { Display } from './components/Display'
 import { Buttons } from './components/Buttons'
 import { offShoreDecisionMaker } from './Utils/Operations'
+import { calcData } from './interfaces/calcData'
+
+
+
+let calcHist: calcData[] = [];
+
+
 
 function App(): JSX.Element  {
   const [workingTotal, setWorkingTotal] = useState<string>("");
@@ -10,12 +17,23 @@ function App(): JSX.Element  {
   const [operation, setOperation] = useState<string>("");
   const [calcDisp, setCalcDisp] = useState<string>("");
 
+  let newObj: calcData;
+
+  const calcWorkingData: calcData = {
+    workingTotal,
+    calculatingTotal,
+    operation
+  }
+
   const handleInput = (input: string) => {
 
-    let calcData = {workingTotal, calculatingTotal, operation}; // create an object to store and pass the calculator data
-
-    let newObj = offShoreDecisionMaker(input, calcData); // passing calcData to manipulate calculator data based on input
-
+    if (input !== "<-") {
+      newObj = offShoreDecisionMaker(input, calcWorkingData); // passing calcData to manipulate calculator data based on input
+    } else {
+      calcHist.pop();
+      let lastStepCalcData = calcHist.pop();
+      console.log(lastStepCalcData);
+    }
     if (input === "AC") { // clear all variables if AC pressed
       setCalculatingTotal("");
       setWorkingTotal("");
@@ -27,13 +45,18 @@ function App(): JSX.Element  {
     } else if (input === "C") { // clear workingTotal on C pressed
       setWorkingTotal("");
       newObj.workingTotal = "";
-    }
+    } 
+
     setWorkingTotal(newObj.workingTotal);         //
     setOperation(newObj.operation);               // updating calculator data after offShore manipulation 
     setCalculatingTotal(newObj.calculatingTotal); // 
     console.log(newObj);
     setCalcDisp(newObj.calculatingTotal+newObj.operation+newObj.workingTotal); // building calc display string
+
+    calcHist.push(newObj);
+    console.log(calcHist)
     }
+
 
     // React; what a wild ride
 
