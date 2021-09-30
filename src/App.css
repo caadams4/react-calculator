@@ -1,38 +1,72 @@
 .App {
+  border-radius: 9px;
+  margin-left: auto;
+  margin-right: auto;
+  background: rgb(63, 63, 63);
+  border: 1px solid rgb(0, 0, 0);
+  height: 280px;
+  width: 180px;
+  margin-top: 70px;
+  padding-top: 5px;
+  padding-left: 12px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+.calculatorDisplay {
+  border-radius: 9px;
+  text-align: right;
+  text-align: top;
+  background-color: rgb(146, 173, 123);
+  border: 1px solid rgb(0, 0, 0);
+  line-height: 38px;
+  margin-left: 1px;
+  margin-top: 1px;
+  margin-bottom: 5px;
+  height: 60px;
+  width: 158px;
+  font-size: 16px;
+  font-weight: bold;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+.calculatorButton {
+  border-radius: 4px;
+  background: rgb(211, 211, 212);
+  border: 1px solid rgb(0, 0, 0);
+  float: left;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 38px;
+  height: 38px;
+  margin-left: 1px;
+  margin-right: 1px;
+  margin-top: 1px;
+  padding: 0;
   text-align: center;
+  width: 38px;
+}
+.equalsButton {
+  background: rgb(211, 211, 212);
+  border: 1px solid rgb(0, 0, 0);
+  float: left;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 38px;
+  height: 38px;
+  margin-right: 1px;
+  margin-top: 1px;
+  padding: 0;
+  text-align: center;
+  width: 78px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.calcBtn:after {
+  content: "";
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.calcRow:after {
+  clear: both;
+  content: "";
+  display: table;
 }
