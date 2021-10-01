@@ -44,8 +44,7 @@ function handleDecimal(input: string,data: calcData ): calcData {
     // takes in calculator data and adds decimal value
 
         // returns data as decimal   
-
-    if (data.workingTotal.includes(".")) {  // concatenates string input to the workingTotal if it is aleady a decimal
+    if (data.workingTotal.includes(".") || input === ".") {  // concatenates string input to the workingTotal if it is aleady a decimal
         data.workingTotal += input;
     } else {    // adds input as multiplied by one tenth to create decimal value
         let workingTotal: number =+ data.workingTotal;  // converting to num
@@ -55,6 +54,7 @@ function handleDecimal(input: string,data: calcData ): calcData {
         data.workingTotal = "" + workingTotal;
 
     }
+    console.log(data.workingTotal)
     return data;
 }
 
@@ -116,10 +116,6 @@ export function offShoreDecisionMaker(input: string, data: calcData ): calcData 
         case ("/"): {
             return operationHandler(input, data);
         }
-        case ("."): { // sets all input to workingTotal varialbe after "." to be a decimal value
-            data.operation = input;
-            return data;
-        }
         case ("(-)"): { // negates workingTotal variable
             return handleNegative(data);
         }
@@ -130,14 +126,11 @@ export function offShoreDecisionMaker(input: string, data: calcData ): calcData 
             break;
         }
     }
+    if (input === ".") {
+        handleDecimal(input,data);
+    }
     if (["1","2","3","4","5","6","7","8","9","0"].includes(input)){ // in the input is (basically) an int
-        if (data.operation === ".") {
-            handleDecimal(input, data);
-        } else if (data.workingTotal.includes(".")) {
-            handleDecimal(input,data);
-        } else {
-            data.workingTotal+=input;
-        }
+        data.workingTotal+=input;
     }
     return data;
 }

@@ -1,49 +1,55 @@
+.body {
+  height: 100%;
+  background: linear-gradient(rgb(26, 70, 153), transparent),
+    linear-gradient(90deg, coral, transparent),
+    linear-gradient(-90deg, coral, transparent);
+}
 .App {
-  border-radius: 9px;
   margin-left: auto;
   margin-right: auto;
-  background: rgb(63, 63, 63);
+  background: rgb(3, 2, 2);
   border: 1px solid rgb(0, 0, 0);
-  height: 280px;
-  width: 180px;
+  height: 800px;
+  width: 601px;
   margin-top: 70px;
-  padding-top: 5px;
-  padding-left: 12px;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  padding-left: 4px;
 }
 
 .calculatorDisplay {
-  border-radius: 9px;
   text-align: right;
-  text-align: top;
-  background-color: rgb(146, 173, 123);
-  border: 1px solid rgb(0, 0, 0);
-  line-height: 38px;
-  margin-left: 1px;
-  margin-top: 1px;
-  margin-bottom: 5px;
-  height: 60px;
-  width: 158px;
-  font-size: 16px;
+  background: linear-gradient(rgb(0, 27, 78), transparent),
+    linear-gradient(90deg, rgb(212, 121, 1), transparent),
+    linear-gradient(-90deg, rgb(33, 32, 112), transparent);
+  border: 4px;
+  border-color: rgb(86, 177, 177);
+  color: rgb(230, 149, 0);
+  line-height: 140px;
+  height: 150px;
+  width: 588px;
+  margin-left: 2px;
+  margin-right: 4px;
+  margin-top: 5px;
+  margin-bottom: 4px;
+  font-size: 36px;
   font-weight: bold;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
 .calculatorButton {
-  border-radius: 4px;
-  background: rgb(211, 211, 212);
+  background: rgb(219, 219, 235);
   border: 1px solid rgb(0, 0, 0);
+  color: rgb(11, 11, 100);
   float: left;
   font-size: 20px;
   font-weight: bold;
   line-height: 38px;
-  height: 38px;
+  height: 126px;
   margin-left: 1px;
   margin-right: 1px;
   margin-top: 1px;
   padding: 0;
   text-align: center;
-  width: 38px;
+  font-size: 36px;
+  width: 146px;
 }
 .equalsButton {
   background: rgb(211, 211, 212);
@@ -58,14 +64,20 @@
   padding: 0;
   text-align: center;
   width: 78px;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
 .calcBtn:after {
   content: "";
 }
+.calcRow::before {
+  margin-left: 4px;
+  clear: both;
+  content: "";
+  display: table;
+}
 
 .calcRow:after {
+  margin-left: 4px;
   clear: both;
   content: "";
   display: table;

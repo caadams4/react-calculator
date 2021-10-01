@@ -4,12 +4,10 @@ import { Display } from './components/Display'
 import { Buttons } from './components/Buttons'
 import { offShoreDecisionMaker } from './Utils/Operations'
 import { calcData } from './interfaces/calcData'
-
-
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import { Container,Button } from 'react-bootstrap';
 
 let calcHist: calcData[] = [];
-
-
 
 function App(): JSX.Element  {
   const [workingTotal, setWorkingTotal] = useState<string>("");
@@ -19,7 +17,7 @@ function App(): JSX.Element  {
 
   let newObj: calcData;
 
-  const calcWorkingData: calcData = {
+  let calcWorkingData: calcData = {
     workingTotal,
     calculatingTotal,
     operation
@@ -27,42 +25,36 @@ function App(): JSX.Element  {
 
   const handleInput = (input: string) => {
 
-    if (input !== "<-") {
-      newObj = offShoreDecisionMaker(input, calcWorkingData); // passing calcData to manipulate calculator data based on input
-    } else {
-      calcHist.pop();
-      let lastStepCalcData = calcHist.pop();
-      console.log(lastStepCalcData);
-    }
+    calcWorkingData = offShoreDecisionMaker(input, calcWorkingData); // passing calcData to manipulate calculator data based on input
+
     if (input === "AC") { // clear all variables if AC pressed
       setCalculatingTotal("");
       setWorkingTotal("");
       setOperation("");
-      newObj.workingTotal = "";
-      newObj.calculatingTotal = "";
-      newObj.operation = "";
+      calcWorkingData.workingTotal = "";
+      calcWorkingData.calculatingTotal = "";
+      calcWorkingData.operation = "";
       setCalculatingTotal("");
     } else if (input === "C") { // clear workingTotal on C pressed
-      setWorkingTotal("");
-      newObj.workingTotal = "";
+      setWorkingTotal(""); 
+      calcWorkingData.workingTotal = "";
     } 
 
-    setWorkingTotal(newObj.workingTotal);         //
-    setOperation(newObj.operation);               // updating calculator data after offShore manipulation 
-    setCalculatingTotal(newObj.calculatingTotal); // 
-    console.log(newObj);
-    setCalcDisp(newObj.calculatingTotal+newObj.operation+newObj.workingTotal); // building calc display string
+    setWorkingTotal(calcWorkingData.workingTotal);         //
+    setOperation(calcWorkingData.operation);               // updating calculator data after offShore manipulation 
+    setCalculatingTotal(calcWorkingData.calculatingTotal); // 
+    console.log(calcWorkingData);
+    setCalcDisp(calcWorkingData.calculatingTotal+calcWorkingData.operation+calcWorkingData.workingTotal); // building calc display string
 
-    calcHist.push(newObj);
+    calcHist.push(calcWorkingData);
     console.log(calcHist)
     }
-
 
     // React; what a wild ride
 
   return (
-    <div className="App">
-      <div>
+    <div className="body">
+      <div className="App">
           <Display calcSays = {calcDisp}></Display>
           <Buttons newInput = {handleInput} ></Buttons>
       </div>
